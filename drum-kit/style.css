@@ -1,0 +1,50 @@
+html {
+  height: 100vh;
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: url(bg.jpg) no-repeat bottom center;
+  background-size: cover;
+  font-family: sans-serif;
+}
+
+.title {
+  color: #ffffff55;
+  font-size: 1.5em;
+  text-align: center;
+  margin: 0;
+}
+
+.teclas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.tecla {
+  width: 60px;
+  background: #00000055;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  color: orange;
+  border: 3px solid #222222ee;
+  border-radius: 6px;
+  box-shadow: 0 0 5px #333;
+  transition: all 0.09s ease;
+}
+
+.sonando {
+  transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 1rem #ffc600;
+}
+
+kbd {
+  color: white;
+  font-size: 3.5em;
+}
