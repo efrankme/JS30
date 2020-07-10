@@ -6,7 +6,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: url('https://i.imgur.com/19wBkFO.jpg') bottom center;
+  background: url(https://i.imgur.com/19wBkFO.jpg) center center;
   background-size: cover;
   font-family: sans-serif;
 }
