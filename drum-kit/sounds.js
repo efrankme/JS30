@@ -1,4 +1,4 @@
-function playAudio(evt){
+function playAudio(evt) {
   const audio = document.querySelector(`audio[data-key="${evt.keyCode}"]`);
 
   if(!audio) return
