@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Jugando con Variables CSS</title>
+	</head>
+	<style>
+    :root {
+      --base: #ffcc00;
+			--space: 10px;
+			--blur: 1px;
+
+    }
+		img {
+			padding: var(--space);
+			background: var(--base);
+			filter: blur(var(--blur));
+		}
+
+		a {
+			color: var(--base);
+		}
+
+		body {
+			background: #084a4e;
+			color: white;
+			font-family: "Segoe UI", sans-serif;
+			font-weight: 100;
+			font-size: 35px;
+			text-align: center;
+		}
+
+		.controls {
+			margin-bottom: 50px;
+		}
+
+		input {
+			width: 100px;
+		}
+	</style>
+	<body>
+			<h2>Actualiza Variables CSS con <a style="--base: #BADA55">Vue</a></h2>
+
+			<div class="controls">
+				<label for="space">Espaciado:</label>
+				<input type="range" name="space" min="10"	max="200"	value="10" data-sizing="px"/>
+
+				<label for="blur">Desenfoque:</label>
+				<input
+					type="range"
+					name="blur"
+					min="0"
+					max="25"
+					value="5"
+          data-sizing="px"/>
+
+				<label for="base">Color base</label>
+				<input type="color" name="base" value="#ffcc00"/>
+			</div>
+
+			<img src="https://picsum.photos/700/500" alt="" />
+
+		<script>
+      const inputs = document.querySelectorAll('.controls input');
+      
+      function actualizaVars(){
+        const sufijo = this.dataset.sizing || '';
+        document.documentElement.style.setProperty('--'+this.name, this.value + sufijo)
+      }
+
+      inputs.forEach(input => input.addEventListener('change', actualizaVars));
+      inputs.forEach(input => input.addEventListener('mousemove', actualizaVars));
+		</script>
+	</body>
+</html>
