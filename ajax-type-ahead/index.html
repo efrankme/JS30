@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="Ciudad o Estado">
+    <ul class="suggestions">
+      <li>Filtrar por Ciudad</li>
+      <li>o Estado</li>
+    </ul>
+  </form>
+<script>
+const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+const ciudades = [];
+
+fetch(endpoint)
+  .then(res => res.json())
+  .then(data => ciudades.push(...data))
+
+
+function buscaTerminos(termino, ciudades) {
+  return ciudades.filter(lugar => {
+    const regex = new RegExp(termino,'gi');
+    return lugar.city.match(regex) || lugar.state.match(regex)
+  })
+}
+
+function numerosConPuntos(n){
+  n = String(n).replace(/\D/g, "");
+  return n === '' ? n : Number(n).toLocaleString();
+}
+
+function mostrarTerminos(){
+  const coincidencias = buscaTerminos(this.value,ciudades)
+  const html = coincidencias.map(lugar => {
+    const regex = new RegExp(this.value, 'gi');
+    const ciudad = lugar.city.replace(regex,`<span class="hl">${this.value}</span>`);
+    const estado = lugar.state.replace(regex,`<span class="hl">${this.value}</span>`);
+    return `
+      <li>
+        <span class="name">${ciudad}, ${estado}</span>
+        <span class="population">${numerosConPuntos(lugar.population)}</span>
+      </li>`;
+  }).join('');
+  sugerencias.innerHTML = html;
+}
+
+const busqueda = document.querySelector('.search')
+const sugerencias = document.querySelector('.suggestions')
+
+busqueda.addEventListener('change',mostrarTerminos)
+busqueda.addEventListener('keyup',mostrarTerminos)
+
+</script>
+</body>
+</html>
